@@ -1,5 +1,6 @@
 pipeline {
     agent {label 'JDK11'}
+  
     stages {
         stage('sourcecode'){
             steps {
@@ -10,7 +11,7 @@ pipeline {
         stage('Build')
         {
             steps {
-                mvn 'clean package'
+                sh 'clean package'
             }
         }
 
