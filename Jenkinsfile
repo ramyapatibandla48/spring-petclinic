@@ -9,7 +9,7 @@ stages{
     stage('buid and package') {
         steps {
             withSonarQubeEnv('SONAR_LATEST') {
-                    sh script: 'mvn clean package sonar:sonar'
+                    sh  'mvn clean package sonar:sonar'
             
         }
     }
