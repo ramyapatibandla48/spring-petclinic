@@ -11,9 +11,16 @@ stages{
             withSonarQubeEnv('SONAR_LATEST') {
                 sh script: 'mvn clean package sonar:sonar'
               }
-           
             
         }
     }
+
+    stage('quality gate'){
+        steps{
+             timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+        }
+    }
+}
 }
 }
