@@ -1,5 +1,5 @@
 pipeline {
-agent {label JDK}
+agent {label 'JDK'}
 stages{
     stage('Clone'){
         steps {
