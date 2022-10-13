@@ -1,31 +1,51 @@
 pipeline {
-agent {label 'JDK'}
-stages{
-    stage('Source Code'){
-        steps {
-            git branch: 'main', url: 'https://github.com/ramyapatibandla48/spring-petclinic.git'
-        }
+    agent { label 'JDK' }
+    options { 
+        timeout(time: 1, unit: 'HOURS')
     }
-    stage('buid and package') {
-        steps {
-            withSonarQubeEnv('SONAR_LATEST') {
-                sh script: 'mvn clean install sonar:sonar'
-              }
-            
-        }
+    triggers {
+        cron('0 * * * *')
     }
+    stages {
+        stage('Source Code') {
+            steps {
+                git url: 'https://github.com/GitPracticeRepo/spring-petclinic.git', 
+                branch: 'main'
+            }
 
-    stage('Artifactory configuration') {
-        steps {
-            rtMavenDeployer (
-                    id: 'Artifactory-1',
+        }
+        stage('Artifactory-Configuration') {
+            steps {
+                rtMavenDeployer (
+                    id: 'spc-deployer',
                     serverId: 'Artifactory-Server',
-                    releaseRepo: 'libs-release-local',
-                    snapshotRepo: 'libs-snapshot-local',
-            )
+                    releaseRepo: 'qtecomm-libs-release-local',
+                    snapshotRepo: 'qtecomm-libs-snapshot-local',
+
+                )
+            }
         }
+        stage('Build the Code and sonarqube-analysis') {
+            steps {
+
+                rtMavenRun (
+                    // Tool name from Jenkins configuration.
+                    tool: 'MVN_DEFAULT',
+                    pom: 'pom.xml',
+                    goals: 'clean install',
+                    // Maven options.
+                    deployerId: 'spc-deployer',
+                )
+
+            }
+        }
+        stage('reporting') {
+            steps {
+                junit testResults: 'target/surefire-reports/*.xml'
+            }
+        }
+
+
     }
 
-   
-}
 }
