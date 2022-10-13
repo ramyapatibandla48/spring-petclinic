@@ -18,7 +18,7 @@ stages{
     stage('Artifactory configuration') {
         steps {
             rtMavenDeployer (
-                    id: 'spc-deployer',
+                    id: 'Artifactory-Server',
                     serverId: 'Artifactory-Server',
                     releaseRepo: 'qtecomm-libs-release-local',
                     snapshotRepo: 'qtecomm-libs-snapshot-local',
