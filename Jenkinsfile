@@ -20,8 +20,8 @@ stages{
             rtMavenDeployer (
                     id: 'Artifactory-Server',
                     serverId: 'Artifactory-Server',
-                    releaseRepo: 'qtecomm-libs-release-local',
-                    snapshotRepo: 'qtecomm-libs-snapshot-local',
+                    releaseRepo: 'libs-release-local',
+                    snapshotRepo: 'libs-snapshot-local',
             )
         }
     }
