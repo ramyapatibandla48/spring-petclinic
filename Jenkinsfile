@@ -18,7 +18,7 @@ stages{
     stage('Artifactory configuration') {
         steps {
             rtMavenDeployer (
-                   
+                    id: 'Artifactory-Server',
                     serverId: 'Artifactory-Server',
                     releaseRepo: 'libs-release-local',
                     snapshotRepo: 'libs-snapshot-local',
