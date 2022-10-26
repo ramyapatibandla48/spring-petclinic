@@ -7,35 +7,8 @@ stages{
         }
     }
 
-    stage('Artifactory configuration') {
-        steps {
-            rtMavenDeployer (
-                    id: 'Artifactory-1',
-                    serverId: 'Artifactory-Server',
-                    releaseRepo: 'libs-release-local',
-                    snapshotRepo: 'libs-snapshot-local',
-            )
-        }
-    }
+    
 
-    stage('buid and package') {
-        steps {
-            //withSonarQubeEnv('SONAR_LATEST') {
-              //  sh script: 'mvn clean package sonar:sonar'
-
-            rtMavenRun (
-                    // Tool name from Jenkins configuration.
-                    tool: 'MVN_DEFAULT',
-                    pom: 'pom.xml',
-                    goals: 'clean install',
-                    // Maven options.
-                    deployerId: 'Artifactory-1',
-                )
-
-
-              }
-            
-        }
     }
 
     
