@@ -6,6 +6,11 @@ stages{
             git branch: 'main', url: 'https://github.com/ramyapatibandla48/spring-petclinic.git'
         }
     }
+    stage('Buid'){
+        steps{
+            sh 'mvn clean install'
+        }
+    }
     }
 
 }
