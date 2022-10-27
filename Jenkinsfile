@@ -10,7 +10,7 @@ stages{
         steps{  
             withSonarQubeEnv('SONAR_LATEST') {
 
-            sh 'mvn clean install'
+            sh 'mvn clean package sonar:sonar'
         }
     }
     }
