@@ -15,6 +15,34 @@ stages{
     }
     }
 
+    stage('artifactory'){
+        steps{
+            rtServer (
+                    id: 'Artifactory',
+                    url: 'http://13.69.187.248:8081/artifactory',
+                    username: 'jenkins',
+                    password: '121FA07048@1',
+                    bypassProxy: true,
+                    timeout: 300
+                )
+        }
+    }
+
+    stage('upload'){
+        steps{
+            rtUpload (
+                    serverId: 'Artifactory',
+                    spec: '''{
+                        "files": [
+                            {
+                            "pattern": "*.war",
+                            "target": "http://13.69.187.248:8081/artifactory/libs-release-local/"
+                            }
+                        ]
+                    }''',
+            )
+        }
+    }
 }
 }
 
