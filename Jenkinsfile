@@ -36,7 +36,7 @@ stages{
                         "files": [
                             {
                             "pattern": "*.jar",
-                            "target": "https://13.69.187.248:8081/artifactory/libs-release-local/"
+                            "target": "libs-release-local"
                             }
                         ]
                     }''',
