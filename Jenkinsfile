@@ -35,7 +35,7 @@ stages{
                     spec: '''{
                         "files": [
                             {
-                            "pattern": "*.war",
+                            "pattern": "*.jar",
                             "target": "https://13.69.187.248:8081/artifactory/libs-release-local/"
                             }
                         ]
