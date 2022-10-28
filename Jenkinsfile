@@ -36,7 +36,7 @@ stages{
                         "files": [
                             {
                             "pattern": "target/*.war",
-                            "target": "libs-release-local"
+                            "target": "springpetclinic-libs-release-local"
                             }
                         ]
                     }''',
@@ -44,14 +44,7 @@ stages{
         }
     }
 
-    stage('Publish build info')
-    {
-    steps{
-        rtPublishBuildInfo (
-            serverId: 'Artifactory'
-        )
-    }
-    }
+    
 }
 }
 
