@@ -35,7 +35,7 @@ stages{
                     spec: '''{
                         "files": [
                             {
-                            "pattern": "*.war",
+                            "pattern": "target/*.war",
                             "target": "libs-release-local"
                             }
                         ]
