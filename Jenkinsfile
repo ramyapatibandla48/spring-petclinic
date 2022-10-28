@@ -19,7 +19,7 @@ stages{
         steps{
             rtServer (
                     id: 'Artifactory',
-                    url: 'https://13.69.187.248:8081/artifactory',
+                    url: 'http://13.69.187.248:8081/artifactory',
                     username: 'jenkins',
                     password: '121FA07048@1',
                     bypassProxy: true,
