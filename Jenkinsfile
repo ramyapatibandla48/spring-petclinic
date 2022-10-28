@@ -19,9 +19,9 @@ stages{
         steps{
             rtServer (
                     id: 'Artifactory',
-                    url: 'https://13.69.187.248:8081/artifactory',
-                    username: 'jenkins',
-                    password: '121FA07048@1',
+                    url: 'https://artifactoryservertest.jfrog.io',
+                    username: 'artifactory',
+                    password: 'Artifactory@123',
                     bypassProxy: true,
                     timeout: 300
                 )
@@ -44,7 +44,14 @@ stages{
         }
     }
 
-    
+    stage('Publish build info')
+    {
+    steps{
+        rtPublishBuildInfo (
+            serverId: 'Artifactory'
+        )
+    }
+    }
 }
 }
 
