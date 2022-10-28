@@ -14,7 +14,7 @@ stages{
         }
     }
     }
-++
+
     stage('artifactory'){
         steps{
             rtServer (
