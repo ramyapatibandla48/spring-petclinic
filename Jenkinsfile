@@ -36,7 +36,7 @@ stages{
                         "files": [
                             {
                             "pattern": "target/*.war",
-                            "target": "springpetclinic-libs-release-local"
+                            "target": "springpetclinic-libs-release-local/"
                             }
                         ]
                     }''',
