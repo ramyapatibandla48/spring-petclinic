@@ -44,14 +44,7 @@ stages{
         }
     }
 
-    stage('Publish build info')
-    {
-    steps{
-        rtPublishBuildInfo (
-            serverId: 'Artifactory'
-        )
-    }
-    }
+    
 }
 }
 
