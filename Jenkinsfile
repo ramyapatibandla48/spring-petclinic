@@ -1,6 +1,13 @@
 pipeline {
 agent {label 'JDK'}
+environment{
+        
+        registry = "<dockerhub-username>/<repo-name>"
+        registryCredential = '<dockerhub-credential-name>'        
+    }
+    
 stages{
+    
     stage('Source Code'){
         steps {
             git branch: 'main', url: 'https://github.com/ramyapatibandla48/spring-petclinic.git'
@@ -15,41 +22,26 @@ stages{
     }
     }
 
-    stage('artifactory'){
-        steps{
-            rtServer (
-                    id: 'Artifactory',
-                    url: 'https://artifactoryservertest.jfrog.io',
-                    username: 'artifactory',
-                    password: 'Artifactory@123', //login for https://artifactoryservertest.jfrog.io/ui/login/
-                    bypassProxy: true,
-                    timeout: 300
-                )
+   
+       stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
+      }
+    }
+    
+
+    stage('Deploy Image') {
+      steps{
+         script {
+            docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
     }
 
-    stage('upload'){
-        steps{
-            rtUpload (
-                    serverId: 'Artifactory',
-                    spec: '''{
-                        "files": [
-                            {
-                            "pattern": "target/*.war",
-                            "target": "springpetclinic-libs-release-local/"
-                            }
-                        ]
-                    }''',
-            )
-        }
-    }
-
-    stage('Docker build'){
-        agent {label 'spcdocker'}
-        steps{
-                sh 'docker build -t spc . '
-        }
-    }
 }
 }
 
