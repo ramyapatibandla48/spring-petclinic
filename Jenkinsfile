@@ -3,7 +3,7 @@ agent {label 'JDK'}
 environment{
         
         registry = "spcregistrys/spring-pet-clinic"
-        registryCredential = 'dockerhub-credential'        
+        registryCredential = 'dockerhub'        
     }
     
 stages{
