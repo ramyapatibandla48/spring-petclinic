@@ -1,5 +1,5 @@
 pipeline {
-agent {label 'JDK'}
+agent {label 'spcdocker'}
 environment{
         
         registry = "spcregistrys/spring-pet-clinic"
@@ -24,7 +24,7 @@ stages{
 
    
        stage('Building image') {
-        agent { label 'spcdocker'}
+       
       steps{
         script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
