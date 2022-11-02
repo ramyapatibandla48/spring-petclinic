@@ -2,12 +2,12 @@ pipeline {
 agent {label 'JDK'}
 environment{
         
-        registry = "<dockerhub-username>/<repo-name>"
-        registryCredential = '<dockerhub-credential-name>'        
+        registry = "spcregistrys/spring-pet-clinic"
+        registryCredential = 'dockerhub-credential'        
     }
     
 stages{
-    
+
     stage('Source Code'){
         steps {
             git branch: 'main', url: 'https://github.com/ramyapatibandla48/spring-petclinic.git'
