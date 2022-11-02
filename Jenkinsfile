@@ -21,7 +21,7 @@ stages{
                     id: 'Artifactory',
                     url: 'https://artifactoryservertest.jfrog.io',
                     username: 'artifactory',
-                    password: 'Artifactory@123',
+                    password: 'Artifactory@123', //login for https://artifactoryservertest.jfrog.io/ui/login/
                     bypassProxy: true,
                     timeout: 300
                 )
