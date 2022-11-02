@@ -44,7 +44,12 @@ stages{
         }
     }
 
-    
+    stage('Docker build'){
+        agent(label 'spcdocker')
+        steps{
+                sh 'docker build -t spc . '
+        }
+    }
 }
 }
 
