@@ -20,6 +20,7 @@ stages{
             sh 'mvn  package sonar:sonar'
         }
     }
+    
     }
 
    
@@ -40,7 +41,7 @@ stages{
             dockerImage.push()
           }
         }
-        
+
       }
     }
 
