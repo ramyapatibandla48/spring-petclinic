@@ -36,7 +36,7 @@ stages{
     stage('Deploy Image') {
       steps{
          script {
-            docker.withRegistry( '', registryCredential ) {
+            docker.withRegistry( 'spcregistrys.azurecr.io', registryCredential ) {
             dockerImage.push()
           }
         }
