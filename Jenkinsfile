@@ -40,6 +40,7 @@ stages{
             dockerImage.push()
           }
         }
+        
       }
     }
 
