@@ -13,12 +13,12 @@ stages{
             git branch: 'main', url: 'https://github.com/ramyapatibandla48/spring-petclinic.git'
         }
     }
-    stage('Buid and sonarqube analysis'){
+    stage('Buid '){
         steps{  
-            withSonarQubeEnv('SONAR_LATEST') {
+             
 
-            sh 'mvn  package sonar:sonar'
-        }
+            sh 'mvn  package '
+        
     }
     }
 
