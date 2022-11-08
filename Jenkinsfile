@@ -1,8 +1,8 @@
 pipeline {
-agent {label 'spcdocker'}
+agent {label 'JDK11'}
 environment{
         
-        registry = "spcregistrys/spring-pet-clinic"
+        registry = "spclinicregistrys/spring-pet-clinic"
         registryCredential = 'dockerhub'        
     }
     
@@ -36,7 +36,7 @@ stages{
     stage('Deploy Image') {
       steps{
          script {
-            docker.withRegistry( 'https://spcregistrys.azurecr.io', registryCredential )  {
+            docker.withRegistry( 'https://spclinicregistrys.azurecr.io', registryCredential )  {
             dockerImage.push()
           }
         }
