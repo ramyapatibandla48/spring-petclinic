@@ -2,7 +2,7 @@ pipeline {
 agent {label 'JDK11'}
 environment{
         
-        registry = "spclinicregistrys/spring-pet-clinic"
+        registry = "spclinicregistrys/springpetclinic"
         registryCredential = 'dockerhub'        
     }
     
@@ -33,6 +33,16 @@ stages{
     }
     
 
+    stage('Deploy Image') {
+      steps{
+         script {
+            docker.withRegistry( 'https://spclinicregistrys.azurecr.io', registryCredential )  {
+            dockerImage.push()
+          }
+        }
+
+      }
+    }
 
 }
 }
