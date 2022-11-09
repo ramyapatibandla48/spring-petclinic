@@ -33,16 +33,6 @@ stages{
     }
     
 
-    stage('Deploy Image') {
-      steps{
-         script {
-            docker.withRegistry( 'https://spclinicregistrys.azurecr.io', registryCredential )  {
-            dockerImage.push()
-          }
-        }
-
-      }
-    }
 
 }
 }
